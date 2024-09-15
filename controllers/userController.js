@@ -21,8 +21,8 @@ exports.register = async (req, res) => {
     });
   }
 };
-
-xports.login = async (req, res) => {
+// login
+exports.login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (!user) {
@@ -43,4 +43,46 @@ xports.login = async (req, res) => {
   res.status(200).json({
     message: "Login successful",
   });
+};
+// logout :
+exports.logout = (req, res) => {
+  res.clearCookie("token");
+  res.status(200).json({
+    message: "Logout successful",
+  });
+};
+
+// update user
+exports.updateUser = async (req, res) => {
+  try {
+    const { email, password, name, phone, role, oldPassword } = req.body;
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Old password is incorrect" });
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: req.user._id },
+      {
+        email,
+        password: hashedPassword,
+        name,
+        phone,
+        role,
+      },
+      { new: true }
+    );
+
+    res.status(200).json({
+      message: "User updated successfully",
+      user: updatedUser,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
 };
