@@ -5,20 +5,31 @@ const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
 const morgan = require("morgan");
+const setupSwagger = require("./config/swagger");
+
 dotenv.config();
 const mongoose = require("mongoose");
+
 // using middlewares:
 app.use(express.json());
 app.use(cors());
+
 // access log
 const logStream = fs.createWriteStream(path.join(__dirname, "access.log"), {
   flags: "a",
 });
 app.use(morgan("dev", { stream: logStream }));
+
+// Initialize Swagger
+setupSwagger(app);
+
 // starting server
 app.listen(process.env.PORT, () => {
   console.log(`Listening on port ${process.env.PORT}`);
 });
+
+// routes
+app.use("/", require("./routes"));
 
 // connection to db
 mongoose
