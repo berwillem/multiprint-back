@@ -17,16 +17,8 @@ exports.getAllProducts = async (req, res) => {
 // create a product
 exports.createProduct = async (req, res) => {
   try {
-    const {
-      titlefr,
-      titleen,
-      titlear,
-      descfr,
-      descen,
-      descar,
-      images,
-      category,
-    } = req.body;
+    const { titlefr, titleen, titlear, descfr, descen, descar } = req.body;
+    const images = req.files.map((file) => file.path);
     const product = new Product({
       titlefr,
       titleen,
@@ -35,11 +27,11 @@ exports.createProduct = async (req, res) => {
       descen,
       descar,
       images,
-      category,
     });
     await product.save();
     res.status(200).json({
       message: "Product created successfully",
+      product,
     });
   } catch (error) {
     res.status(500).json({

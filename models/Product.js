@@ -21,9 +21,7 @@ const productschema = new mongoose.Schema({
   descar: {
     type: String,
   },
-  images: {
-    type: String,
-  },
+  images: { type: [String], required: true },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",

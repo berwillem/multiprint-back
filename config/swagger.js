@@ -36,13 +36,11 @@ const swaggerDefinition = {
 //  options ::
 const options = {
   swaggerDefinition,
-  apis: ["./routes/**/*.js"], // Adjust this path based on your project structure
+  apis: ["./routes/**/*.js"],
 };
 
 // init ::
 const swaggerSpec = swaggerJsdoc(options);
-
-console.log(JSON.stringify(swaggerSpec, null, 2));
 
 module.exports = function setupSwagger(app) {
   app.use(
