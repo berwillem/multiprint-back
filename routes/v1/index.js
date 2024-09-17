@@ -27,4 +27,15 @@ router.use("/categories", require("./categories"));
  */
 router.use("/products", require("./products"));
 
+/**
+ * @swagger
+ * /api/v1/users:
+ *   get:
+ *     summary: Get all users
+ *     description: Fetch a list of all users.
+ *     tags:
+ *       - Users
+ */
+router.use("/users", require("./users"));
+
 module.exports = router;
