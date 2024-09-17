@@ -12,7 +12,7 @@ const router = Router();
 
 /**
  * @swagger
- * /users/register:
+ * /api/v1/users/register:
  *   post:
  *     summary: Register a new user
  *     tags: [Users]
@@ -40,7 +40,7 @@ router.post("/register", userController.register);
 
 /**
  * @swagger
- * /users/login:
+ * /api/v1/users/login:
  *   post:
  *     summary: Login user
  *     tags: [Users]
@@ -68,7 +68,7 @@ router.post("/login", userController.login);
 
 /**
  * @swagger
- * /users/logout:
+ * /api/v1/users/logout:
  *   post:
  *     summary: Logout user
  *     tags: [Users]
@@ -80,7 +80,7 @@ router.post("/logout", userController.logout);
 
 /**
  * @swagger
- * /users/update:
+ * /api/v1/users/update:
  *   put:
  *     summary: Update user details
  *     tags: [Users]
@@ -116,5 +116,9 @@ router.post("/logout", userController.logout);
  *         description: User not found
  */
 router.put("/update", userController.updateUser);
+
+// get all users
+
+router.get("/", userController.getAllUsers);
 
 module.exports = router;
