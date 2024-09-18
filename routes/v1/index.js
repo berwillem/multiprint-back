@@ -2,7 +2,6 @@ const { Router } = require("express");
 
 const router = Router();
 
-
 /**
  * @swagger
  * /api/v1/categories:
@@ -13,8 +12,6 @@ const router = Router();
  *       - Categories
  */
 router.use("/categories", require("./categories"));
-
-
 
 /**
  * @swagger
@@ -37,5 +34,16 @@ router.use("/products", require("./products"));
  *       - Users
  */
 router.use("/users", require("./users"));
+
+/**
+ * @swagger
+ * /api/v1/pub:
+ *   get:
+ *     summary: Get all pubs
+ *     description: Fetch a list of all pubs.
+ *     tags:
+ *       - Pubs
+ */
+router.use("/pub", require("./pub"));
 
 module.exports = router;

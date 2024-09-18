@@ -5,13 +5,25 @@ const Pubschema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  title: {
+  titlefr: {
     type: String,
     required: true,
   },
-  description: {
+  titlear: {
+    type: String,
+  },
+  titleen: {
+    type: String,
+  },
+  descriptionfr: {
     type: String,
     required: true,
+  },
+  descriptionar: {
+    type: String,
+  },
+  descriptionen: {
+    type: String,
   },
   color: {
     type: String,
