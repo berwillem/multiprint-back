@@ -17,7 +17,7 @@ exports.getAllProducts = async (req, res) => {
 // create a product
 exports.createProduct = async (req, res) => {
   try {
-    const { titlefr, titleen, titlear, descfr, descen, descar } = req.body;
+    const { titlefr, titleen, titlear, descfr, descen, descar,  category} = req.body;
     const images = req.files.map((file) => file.path);
     const product = new Product({
       titlefr,
@@ -27,6 +27,7 @@ exports.createProduct = async (req, res) => {
       descen,
       descar,
       images,
+      category,
     });
     await product.save();
     res.status(200).json({
@@ -54,6 +55,7 @@ exports.updateProduct = async (req, res) => {
       category,
     } = req.body;
     const product = await Product.findById(req.params.id);
+    
     if (!product) {
       return res.status(404).json({
         message: "Product not found",
@@ -87,7 +89,7 @@ exports.deleteProduct = async (req, res) => {
         message: "Product not found",
       });
     }
-    await product.remove();
+    await product.deleteOne();
     res.status(200).json({
       message: "Product deleted successfully",
     });
