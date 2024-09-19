@@ -46,4 +46,15 @@ router.use("/users", require("./users"));
  */
 router.use("/pub", require("./pub"));
 
+/**
+ * @swagger
+ * /api/v1/newsletter:
+ *   get:
+ *     summary: Get all newsletters
+ *     description: Fetch a list of all newsletters.
+ *     tags:
+ *       - Newsletters
+ */
+router.use("/newsletter", require("./newsletter"));
+
 module.exports = router;
