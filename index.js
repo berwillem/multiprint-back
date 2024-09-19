@@ -6,10 +6,12 @@ const fs = require("fs");
 const path = require("path");
 const morgan = require("morgan");
 const setupSwagger = require("./config/swagger");
+const coockieParser = require("cookie-parser");
 
 dotenv.config();
 const mongoose = require("mongoose");
 
+app.use(coockieParser());
 // using middlewares:
 app.use(express.json());
 app.use(cors({

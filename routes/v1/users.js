@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const userController = require("../../controllers/userController");
+const authMiddleware = require("../../middlewares/AuthCheck");
 
 const router = Router();
 
@@ -115,7 +116,7 @@ router.post("/logout", userController.logout);
  *       404:
  *         description: User not found
  */
-router.put("/update", userController.updateUser);
+router.put("/update/:id", userController.updateUser);
 
 // get all users
 
