@@ -42,6 +42,7 @@ exports.login = async (req, res) => {
   });
   res.status(200).json({
     message: "Login successful",
+    userinfos:user
   });
 };
 // logout :
@@ -56,7 +57,8 @@ exports.logout = (req, res) => {
 exports.updateUser = async (req, res) => {
   try {
     const { email, password, name, phone, role, oldPassword } = req.body;
-    const user = await User.findById(req.user._id);
+    const id= req.params.id;
+    const user = await User.findById(id);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -66,7 +68,7 @@ exports.updateUser = async (req, res) => {
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     const updatedUser = await User.findOneAndUpdate(
-      { _id: req.user._id },
+      { _id: id },
       {
         email,
         password: hashedPassword,
