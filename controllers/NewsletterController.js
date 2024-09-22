@@ -16,16 +16,8 @@ exports.createNewsletter = async (req, res) => {
 
 exports.getAllNewsletters = async (req, res) => {
   try {
-    const page = req.query.page || 1;
-    const pageSize = 10;
-    const totalCount = await Newsletter.countDocuments();
-    const totalPages = Math.ceil(totalCount / pageSize);
-    const newsletters = await Newsletter.find()
-
-      .skip((page - 1) * pageSize)
-      .limit(pageSize);
-
-    res.status(200).json({ newsletters, totalPages });
+    const newsletters = await Newsletter.find();
+    res.status(200).json({ newsletters });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to fetch newsletters" });

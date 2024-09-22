@@ -14,11 +14,12 @@ const mongoose = require("mongoose");
 app.use(coockieParser());
 // using middlewares:
 app.use(express.json());
-app.use(cors({
-  origin: 'http://localhost:3000', // Remplace par l'URL de ton frontend
-  credentials: true
-}));
-
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "http://localhost:3001"],
+    credentials: true,
+  })
+);
 
 // access log
 const logStream = fs.createWriteStream(path.join(__dirname, "access.log"), {

@@ -57,4 +57,15 @@ router.use("/pub", require("./pub"));
  */
 router.use("/newsletter", require("./newsletter"));
 
+/**
+ * @swagger
+ * /api/v1/contact:
+ *   get:
+ *     summary: Get all contacts
+ *     description: Fetch a list of all contacts.
+ *     tags:
+ *       - Contacts
+ */
+router.use("/contact", require("./contact"));
+
 module.exports = router;
