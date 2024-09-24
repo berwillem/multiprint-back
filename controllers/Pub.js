@@ -28,7 +28,8 @@ exports.createPub = async (req, res) => {
       color,
     } = req.body;
     console.log(req.file);
-    const image = req.file.path;
+    const image = req.file.filename;
+
     const pub = new Pub({
       titlefr,
       titleen,
@@ -36,7 +37,7 @@ exports.createPub = async (req, res) => {
       descriptionfr,
       descriptionen,
       descriptionar,
-      image,
+      image: `http://localhost:5000/images/${image}`,
       color,
     });
     await pub.save();

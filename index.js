@@ -21,6 +21,8 @@ app.use(
   })
 );
 
+app.use("/images",express.static("assets"));
+
 // access log
 const logStream = fs.createWriteStream(path.join(__dirname, "access.log"), {
   flags: "a",

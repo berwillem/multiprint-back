@@ -1,4 +1,5 @@
 const Product = require("../models/Product");
+const { arrayify } = require("../utils/utils");
 
 // get all products
 exports.getAllProducts = async (req, res) => {
@@ -17,8 +18,14 @@ exports.getAllProducts = async (req, res) => {
 // create a product
 exports.createProduct = async (req, res) => {
   try {
-    const { titlefr, titleen, titlear, descfr, descen, descar,  category} = req.body;
-    const images = req.files.map((file) => file.path);
+    const { titlefr, titleen, titlear, descfr, descen, descar, category } =
+      req.body;
+    console.log(req.files);
+    const images = arrayify(req.files).map((file) => file.filename);
+
+    const urls = images.map((img) => {
+      return `http://localhost:5000/images/${img}`;
+    });
     const product = new Product({
       titlefr,
       titleen,
@@ -26,7 +33,7 @@ exports.createProduct = async (req, res) => {
       descfr,
       descen,
       descar,
-      images,
+      images: urls,
       category,
     });
     await product.save();
@@ -55,7 +62,7 @@ exports.updateProduct = async (req, res) => {
       category,
     } = req.body;
     const product = await Product.findById(req.params.id);
-    
+
     if (!product) {
       return res.status(404).json({
         message: "Product not found",
