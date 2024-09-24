@@ -4,7 +4,15 @@ const { arrayify } = require("../utils/utils");
 // get all products
 exports.getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find();
+    const { category } = req.query; // Get category from query parameters
+
+    let filter = {};
+    if (category) {
+      filter.category = category; // Filter by category if provided
+    }
+
+    const products = await Product.find(filter).populate("category"); // Populate category details if needed
+
     res.status(200).json({
       products,
     });
@@ -14,6 +22,7 @@ exports.getAllProducts = async (req, res) => {
     });
   }
 };
+
 
 // create a product
 exports.createProduct = async (req, res) => {
