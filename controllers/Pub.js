@@ -88,7 +88,7 @@ exports.deletePub = async (req, res) => {
         message: "Pub not found",
       });
     }
-    await pub.remove();
+    await pub.deleteOne();
     res.status(200).json({
       message: "Pub deleted successfully",
     });
