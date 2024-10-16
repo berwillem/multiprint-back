@@ -70,7 +70,7 @@ router.get("/", ProductController.getAllProducts);
  */
 router.post(
   "/",
-  imageUpload.array("images", 4),
+  imageUpload.array("images", 3),
   ProductController.createProduct
 );
 
@@ -150,7 +150,7 @@ router.delete("/:id", ProductController.deleteProduct);
  */
 router.put(
   "/:id",
-  imageUpload.array("images", 4),
+  imageUpload.array("images", 3),
   ProductController.updateProduct
 );
 
