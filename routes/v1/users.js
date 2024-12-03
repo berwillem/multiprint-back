@@ -116,10 +116,10 @@ router.post("/logout", userController.logout);
  *       404:
  *         description: User not found
  */
-router.put("/update/:id", userController.updateUser);
+router.put("/update/:id",authMiddleware, userController.updateUser);
 
 // get all users
 
-router.get("/", userController.getAllUsers);
+router.get("/",authMiddleware, userController.getAllUsers);
 
 module.exports = router;

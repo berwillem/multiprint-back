@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const CategoryController = require("../../controllers/categoryController");
+const authMiddleware = require("../../middlewares/AuthCheck");
 const router = Router();
 
 /**
@@ -29,7 +30,7 @@ const router = Router();
  *       500:
  *         description: Server error.
  */
-router.post("/", CategoryController.createCategory);
+router.post("/",authMiddleware, CategoryController.createCategory);
 
 /**
  * @swagger
@@ -70,7 +71,7 @@ router.get("/", CategoryController.getAllCategories);
  *       500:
  *         description: Server error.
  */
-router.delete("/:id", CategoryController.deleteCategory);
+router.delete("/:id",authMiddleware, CategoryController.deleteCategory);
 
 /**
  * @swagger
@@ -108,6 +109,6 @@ router.delete("/:id", CategoryController.deleteCategory);
  *       500:
  *         description: Server error.
  */
-router.put("/:id", CategoryController.updateCategory);
+router.put("/:id",authMiddleware, CategoryController.updateCategory);
 
 module.exports = router;

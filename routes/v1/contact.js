@@ -1,6 +1,7 @@
 const { Router } = require("express");
 
 const ContactController = require("../../controllers/contactController");
+const authMiddleware = require("../../middlewares/AuthCheck");
 
 const router = Router();
 
@@ -13,7 +14,7 @@ const router = Router();
  *     tags:
  *       - Contacts
  */
-router.get("/", ContactController.getAllContacts);
+router.get("/",authMiddleware, ContactController.getAllContacts);
 
 /**
  * @swagger
@@ -69,6 +70,6 @@ router.post("/", ContactController.createContact);
  *       404:
  *         description: Contact not found
  */
-router.delete("/:id", ContactController.deleteContact);
+router.delete("/:id",authMiddleware, ContactController.deleteContact);
 
 module.exports = router;

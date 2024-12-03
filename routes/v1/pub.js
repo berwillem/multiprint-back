@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const pubController = require("../../controllers/Pub");
 const imageUpload = require("../../middlewares/imageUpload");
+const authMiddleware = require("../../middlewares/AuthCheck");
 const router = Router();
 
 /**
@@ -66,7 +67,7 @@ router.get("/", pubController.getAllPubs);
  *       500:
  *         description: Server error.
  */
-router.post("/", imageUpload.single("image"), pubController.createPub);
+router.post("/",authMiddleware, imageUpload.single("image"), pubController.createPub);
 
 /**
  * @swagger
@@ -140,7 +141,7 @@ router.get("/:id", pubController.getPubById);
  *       500:
  *         description: Server error.
  */
-router.put("/:id", imageUpload.single("image"), pubController.updatePub);
+router.put("/:id",authMiddleware, imageUpload.single("image"), pubController.updatePub);
 
 /**
  * @swagger
@@ -165,6 +166,6 @@ router.put("/:id", imageUpload.single("image"), pubController.updatePub);
  *       500:
  *         description: Server error.
  */
-router.delete("/:id", pubController.deletePub);
+router.delete("/:id",authMiddleware, pubController.deletePub);
 
 module.exports = router;

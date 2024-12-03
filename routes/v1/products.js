@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const ProductController = require("../../controllers/productController");
 const imageUpload = require("../../middlewares/imageUpload");
+const authMiddleware = require("../../middlewares/AuthCheck");
 const router = Router();
 
 /**
@@ -69,7 +70,7 @@ router.get("/", ProductController.getAllProducts);
  *         description: Server error.
  */
 router.post(
-  "/",
+  "/",authMiddleware,
   imageUpload.array("images", 3),
   ProductController.createProduct
 );
@@ -97,7 +98,7 @@ router.post(
  *       500:
  *         description: Server error.
  */
-router.delete("/:id", ProductController.deleteProduct);
+router.delete("/:id",authMiddleware, ProductController.deleteProduct);
 
 /**
  * @swagger
@@ -149,7 +150,7 @@ router.delete("/:id", ProductController.deleteProduct);
  *         description: Server error.
  */
 router.put(
-  "/:id",
+  "/:id",authMiddleware,
   imageUpload.array("images", 3),
   ProductController.updateProduct
 );
