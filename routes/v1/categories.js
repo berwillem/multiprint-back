@@ -30,7 +30,7 @@ const router = Router();
  *       500:
  *         description: Server error.
  */
-router.post("/",authMiddleware, CategoryController.createCategory);
+router.post("/", CategoryController.createCategory);
 
 /**
  * @swagger
@@ -71,7 +71,7 @@ router.get("/", CategoryController.getAllCategories);
  *       500:
  *         description: Server error.
  */
-router.delete("/:id",authMiddleware, CategoryController.deleteCategory);
+router.delete("/:id", authMiddleware, CategoryController.deleteCategory);
 
 /**
  * @swagger
@@ -109,6 +109,6 @@ router.delete("/:id",authMiddleware, CategoryController.deleteCategory);
  *       500:
  *         description: Server error.
  */
-router.put("/:id",authMiddleware, CategoryController.updateCategory);
+router.put("/:id", authMiddleware, CategoryController.updateCategory);
 
 module.exports = router;

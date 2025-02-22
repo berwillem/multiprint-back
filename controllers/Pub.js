@@ -27,7 +27,6 @@ exports.createPub = async (req, res) => {
 
       color,
     } = req.body;
-    console.log(req.file);
     const image = req.file.filename;
 
     const pub = new Pub({
