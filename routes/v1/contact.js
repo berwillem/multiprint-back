@@ -1,6 +1,6 @@
 const { Router } = require("express");
 
-const ContactController = require("../../controllers/contactController");
+const ContactController = require("../../controllers/ContactController");
 const authMiddleware = require("../../middlewares/AuthCheck");
 
 const router = Router();
