@@ -16,12 +16,16 @@ app.use(coockieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3001"],
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001",
+      "http://82.29.169.69:3000",
+    ],
     credentials: true,
   })
 );
 
-app.use("/images",express.static("assets"));
+app.use("/images", express.static("assets"));
 
 // access log
 const logStream = fs.createWriteStream(path.join(__dirname, "access.log"), {
@@ -33,7 +37,7 @@ app.use(morgan("dev", { stream: logStream }));
 setupSwagger(app);
 
 // starting server
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, "0.0.0.0", () => {
   console.log(`Listening on port ${process.env.PORT}`);
 });
 
