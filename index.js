@@ -20,6 +20,9 @@ app.use(
       "http://localhost:3000",
       "http://localhost:3001",
       "http://82.29.169.69:3000",
+      "https://sarl-multiprint.com",
+      "https://www.sarl-multiprint.com",
+      "https://admin.sarl-multiprint.com"
     ],
     credentials: true,
   })
