@@ -68,4 +68,6 @@ router.use("/newsletter", require("./newsletter"));
  */
 router.use("/contact", require("./contact"));
 
+router.use("/general", require("./general"));
+
 module.exports = router;
