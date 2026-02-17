@@ -54,7 +54,9 @@ exports.createPub = async (req, res) => {
 // update a pub
 exports.updatePub = async (req, res) => {
   try {
-    const { titlefr, titleen, titlear, descfr, descen, descar } = req.body;
+    const { titlefr, titleen, titlear, descriptionfr, descriptionen, descriptionar, existingImage } = req.body;
+    let imageUrl = req.file ? `http://localhost:5000/images/${req.file.filename}` : existingImage;
+
     const pub = await Pub.findById(req.params.id);
     if (!pub) {
       return res.status(404).json({
@@ -64,9 +66,10 @@ exports.updatePub = async (req, res) => {
     pub.titlefr = titlefr;
     pub.titleen = titleen;
     pub.titlear = titlear;
-    pub.descfr = descfr;
-    pub.descen = descen;
-    pub.descar = descar;
+    pub.descriptionfr = descriptionfr;
+    pub.descriptionen = descriptionen;
+    pub.descriptionar = descriptionar;
+    pub.image = imageUrl;
     await pub.save();
     res.status(200).json({
       message: "Pub updated successfully",

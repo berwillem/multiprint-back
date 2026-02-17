@@ -22,7 +22,9 @@ app.use(
       "http://82.29.169.69:3000",
       "https://sarl-multiprint.com",
       "https://www.sarl-multiprint.com",
-      "https://admin.sarl-multiprint.com"
+      "https://admin.sarl-multiprint.com",
+      "http://109.123.253.96:3513",
+      "http://109.123.253.96:3512"
     ],
     credentials: true,
   })
